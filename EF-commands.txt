@@ -1,0 +1,7 @@
+﻿add-migration initialcreate
+
+add-migration SeedAmigosTable
+
+update-database
+
+add-migration AlterAmigosSeedData

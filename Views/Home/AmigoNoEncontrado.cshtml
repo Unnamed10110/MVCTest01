@@ -1,0 +1,15 @@
+﻿@model int
+@{
+    ViewBag.Title="404 Error";
+}
+
+<div class="alert-danger mt-1 mb-1">
+   <h4> 484 Recurso no encotrado</h4>
+    <hr />
+    <h5>
+        Amigo con ID=@Model no encontrado
+    </h5>
+</div>
+<a asp-controller="home" asp-action="Index" class="btn btn-outline-success" style="width:auto">
+    Ver lista de amigos
+</a>

@@ -1,0 +1,85 @@
+﻿@*@model List<MVCTest01.Models.Amigo>*@ @*No es necesario si se usa viewimports incluir la ruta completa*@
+    @model List<Amigo>
+
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml"; // no es necesario al usar _viewstart
+    ViewBag.Title = "Amigos Indice";
+}
+
+    Index---------------------------------------------------
+
+<div class="row">
+    @foreach (var amigo in Model)
+    {
+        string rutaFoto = "~/images/" + amigo.rutaFoto;
+        if (amigo.rutaFoto == "null" || amigo.rutaFoto == null)
+        {
+            rutaFoto = "~/images/" + "ChicaCodigo.png";
+        }
+        <div class="col-sm-6" style="max-width:300px;">
+            <div class="card">
+                <div class="card-body" >
+                    <div class="card-header">
+                        <h3>@amigo.Nombre</h3>
+                        <img class="card-img-top imagen" src="@rutaFoto" style="max-width:auto;" asp-append-version="true" />
+                        <div class="card-footer text-center">
+                            <a asp-controller="home" asp-action="details" asp-route-id="@amigo.Id" class="btn btn-primary m-1">Ver</a>
+                            <a asp-controller="home" asp-action="edit" asp-route-id="@amigo.Id" class="btn btn-primary m-1">Editar</a>
+                            <a asp-controller="home" asp-action="borrar" asp-route-id="@amigo.Id" class="btn btn-primary m-1">Borrar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@*<div class="card" style="width: 18rem;">
+    @foreach (var amigo in Model)
+    {
+
+    //var rutaFoto = "~/images/" + (amigo.rutaFoto ?? "ChicaCodigo.png");
+    string rutaFoto = "~/images/" + amigo.rutaFoto;
+    if (amigo.rutaFoto == "null" || amigo.rutaFoto == null)
+    {
+    rutaFoto = "~/images/" + "ChicaCodigo.png";
+    }
+
+    <div class="card-body">
+    <div class="card-header">
+    <h3>@amigo.Nombre</h3>
+    </div>
+    <img class="card-img-top imagen" src="@rutaFoto" width="auto" height="auto"  asp-append-version="true" /> <!--asp-append-version agrega un hash para evitar problemas con el cache-->
+    <div class="card-footer text-center">
+    <a asp-controller="home" asp-action="details" asp-route-id="@amigo.Id" class="btn btn-primary">Ver Con TagHelper</a>
+    <a href="#" class="btn btn-primary">Ver</a>
+    <a href="#" class="btn btn-primary">Editar</a>
+    <a href="#" class="btn btn-danger">Borrar</a>
+    </div>
+    </div>
+    }
+    </div>*@
+
+
+
+@*    <table>
+    <tr>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th>Email</th>
+    <th>Ciudad</th>
+    </tr>
+
+    <tr>
+    @foreach (var amigo in Model)
+    {
+    <tr>
+    <td>@amigo.Id</td>
+    <td>@amigo.Nombre</td>
+    <td>@amigo.Email</td>
+    <td>@amigo.Ciudad</td>
+    </tr>
+    }
+    </tr>
+    </table>*@

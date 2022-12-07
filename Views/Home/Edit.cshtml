@@ -1,0 +1,73 @@
+﻿@model EditarAmigoModelo
+
+@{
+    ViewBag.Title = "Editar amigo";
+    var rutafoto = "~/images/" + (Model.rutaFotoExistente ?? "ChicaCodigo.png");
+}
+
+<form asp-controller="Home" asp-action="Edit" method="post" enctype="multipart/form-data" class="mt-3">
+    @*Guardamos en elemtos hidden el id y la ruta de la foto exxistente*@
+    <input hidden asp-for="Id" />
+    <input hidden asp-for="rutaFotoExistente" />
+
+    
+    <div class="form-group row">
+        <label asp-for="Nombre" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Nombre" class="form-control" placeholder="Nombre" />
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Email" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Email" class="form-control" placeholder="E-mail" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Ciudad" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <select asp-for="Ciudad" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<Provincia>()">
+                :
+                <option value="">Seleccione uno</option>
+            </select>
+            <span asp-validation-for="Ciudad" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Foto" class="col-sm-2 col-form-label">-----------------</label>
+        <div class="col-m-10">
+            <div class="custom-file">
+                <input type="file" asp-for="Foto" class="form-control custom-file-input"/>
+                <label class="custom-file-label"> Selecciona un fichero </label>
+            </div>
+        </div>
+    </div>
+
+    @*Mostramos la foto del amigo*@
+    <div class="form-group row col-sm-4 offset-4">
+        <img class="imageThumbnail" src="@rutafoto" asp-append-version="true"/>
+    </div>
+    
+    
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Editar</button>
+            <a asp-action="index" asp-controller="home" class="btn btn-primary">Volver</a>
+        </div>
+    </div>
+
+
+   @* @section Scripts{
+        <script>
+            $(document).ready(function() {
+                $('.custom-file-input').on("change", function (){
+                     var fileName=$(this).val().split("\\").pop();
+                     $(this).next('.custom-file-label').html(fileName);
+                });
+            });
+        </script>
+    }*@
+</form>

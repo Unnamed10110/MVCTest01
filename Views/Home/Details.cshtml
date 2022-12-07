@@ -1,0 +1,92 @@
+﻿<!-- Bind to the model-->
+@*@model MVCTest01.ViewModels.DetallesView;*@ @*No es necesario si se usa viewimports incluir la ruta completa*@
+    @model DetallesView
+
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml"; // no es necesario al usar _viewstart
+    ViewBag.Title = "Amigos Detalles";
+    //var rutaFoto = "~/images/" + (Model.amigo.rutaFoto ?? "ChicaCodigo.png");
+
+    string rutaFoto = "~/images/" + Model.amigo.rutaFoto;
+    if (Model.amigo.rutaFoto == "null" || Model.amigo.rutaFoto == null)
+    {
+        rutaFoto = "~/images/" + "ChicaCodigo.png";
+    }
+}
+
+    Details
+    -------------------------------------------
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.amigo.Nombre</h1>
+            </div>
+            <div class="card-body text-center">
+                <img class="card-img-top imagen" src=@rutaFoto asp-append-version="true" />
+                <h4>Amigo ID : @Model.amigo.Id</h4>
+                <h4>Email: @Model.amigo.Email</h4>
+                <h4>Ciudad: @Model.amigo.Ciudad</h4>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="home" asp-action="index" class="btn btn-primary m-1">Volver</a>
+                <a asp-controller="home" asp-action="edit" asp-route-id="@Model.amigo.Id" class="btn btn-primary m-1">Editar</a>
+                <a asp-controller="home" asp-action="borrar" asp-route-id="@Model.amigo.Id" class="btn btn-primary m-1">Borrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*   <h3>@Model.Titulo</h3>
+    <h3>@Model.SubTitulo</h3>
+
+    <div>Nombre: @Model.amigo.Nombre</div>
+    <div>Nombre: @Model.amigo.Email</div>
+    <div>Nombre: @Model.amigo.Ciudad</div>*@
+
+@*@section Scripts{
+    <script src="~/js~/js/site.js"></script>
+    }*@
+
+@*<h3>ViewData</h3>
+    <h3>@ViewData["Cabecera"]</h3>
+    @{
+    var ami = ViewData["Amigo"] as MVCTest01.Models.Amigo;
+    }
+    <div>
+    Nombre:@ami.Nombre
+    </div>
+    <div>
+    Nombre:@ami.Email
+    </div>
+    <div>
+    Nombre:@ami.Ciudad
+    </div>
+    ----------------------------------------------------------------------
+    <h3>ViewBag</h3>
+    <h3>@ViewBag.Titulo</h3>
+    <div>
+    Nombre:@ViewBag.amigo.Nombre
+    </div>
+    <div>
+    Nombre:@ViewBag.amigo.Email
+    </div>
+    <div>
+    Nombre:@ViewBag.amigo.Ciudad
+    </div>
+    ----------------------------------------------------------------------
+    <h3>Tipado fuerte</h3>
+    <h3>Lista de amigos</h3>
+    <div>
+    Nombre:@Model.Nombre
+    </div>
+    <div>
+    Nombre:@Model.Email
+    </div>
+    <div>
+    Nombre:@Model.Ciudad
+    </div>*@
